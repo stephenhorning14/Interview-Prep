@@ -32,8 +32,8 @@ public class ArrayList {
 
     // Default consturctor
     public ArrayList() {
-        this.data = new Object[TOTAL_CAPACITY];
-        this.size = 0;
+        data = new Object[TOTAL_CAPACITY];
+        size = 0;
     }
 
     /**
@@ -43,11 +43,11 @@ public class ArrayList {
      */
     public ArrayList(int initialCapacity) {
         if (initialCapacity < 10) {
-            this.data = new Object[TOTAL_CAPACITY];
+            data = new Object[TOTAL_CAPACITY];
         } else {
-            this.data = new Object[initialCapacity];
+            data = new Object[initialCapacity];
         }
-        this.size = 0;
+        size = 0;
     }
 
     /**
@@ -56,23 +56,9 @@ public class ArrayList {
      *      The element to be appended onto the end of the ArrayList
      */
     public void add(Object element) {
-        checkCapacity(this.size + 1);
-        this.data[size] = element;
-        this.size++;
-    }
-
-    /**
-     * 
-     * @param index
-     *      The index in which to retrieve data from
-     * @return
-     *      The element at that index
-     */
-    public Object get(int index) {
-        if (index < 0 || index > this.size) {
-            return null;
-        }
-        return this.data[index];
+        checkCapacity(size + 1);
+        data[size] = element;
+        size++;
     }
 
     /**
@@ -83,19 +69,19 @@ public class ArrayList {
      */
     private void checkCapacity(int size) {
         // TODO -- Add check to shrink size
-        if (this.size != 0 && this.size == this.TOTAL_CAPACITY) {
+        if (size != 0 && size == TOTAL_CAPACITY) {
             increaseCapacity();
         } 
     }
 
     // Doubles current total capacity of the given ArrayList
     private void increaseCapacity() {
-        Object[] tmp = new Object[this.TOTAL_CAPACITY * 2];
-        for (int i = 0; i < this.TOTAL_CAPACITY; i++) {
-            tmp[i] = this.data[i];
+        Object[] tmp = new Object[TOTAL_CAPACITY * 2];
+        for (int i = 0; i < TOTAL_CAPACITY; i++) {
+            tmp[i] = data[i];
         }
-        this.TOTAL_CAPACITY *= 2;
-        this.data = tmp;
+        TOTAL_CAPACITY *= 2;
+        data = tmp;
     }
 
     // Returns the current size of the given ArrayList
@@ -114,6 +100,4 @@ public class ArrayList {
         System.out.println(test.get(0));
         System.out.println("Is the ArrayList empty? " + test.isEmpty());
     }
-
-
 }
